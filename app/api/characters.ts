@@ -1,4 +1,3 @@
-// import { ApiResponse, Character } from "../../types/apiTypes";
 import { RICK_AND_MORTY_API_URL } from "@/config";
 import { ApiResponse } from "@/types/apiResponse";
 import { Character } from "@/types/character";
