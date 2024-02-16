@@ -35,8 +35,10 @@ const Location = async ({ params }: { params: { id: string } }) => {
         <div className="flex flex-col mt-5 justify-center items-center w-full m-auto shadow-body">
           <h2 className="text-2xl">Residents</h2>
           {location.residents.length === 0 ? (
-            <span>
-              <BsDashCircleFill />
+            <span className="flex items-center shadow-2xl rounded-md mt-10">
+              <i className="mr-5">
+                <BsDashCircleFill size={30} />
+              </i>
               There are not residents in this location
             </span>
           ) : (
