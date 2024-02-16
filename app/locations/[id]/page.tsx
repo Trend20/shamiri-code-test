@@ -10,9 +10,9 @@ const Location = async ({ params }: { params: { id: string } }) => {
   const location = await getLocationById(locationId);
   const residents = await getCharactersFromUrls(location.residents);
   return (
-    <main className="py-40">
-      <div className="flex flex-col m-auto p-20 gap-20">
-        <div className="flex flex-col">
+    <main className="py-10 bg-whiten min-h-screen">
+      <div className="flex justify-center items-center flex-col m-auto">
+        <div className="flex flex-col p-5 shadow-2xl rounded-md cursor-pointer">
           <h1 className="text-2xl text-body mt-0 mb-5">{location.name}</h1>
           <div className="grid">
             <div className="flex items-center">
@@ -32,28 +32,37 @@ const Location = async ({ params }: { params: { id: string } }) => {
           </div>
         </div>
         <hr />
-        <div>
-          <h2>Residents</h2>
+        <div className="flex flex-col mt-5 justify-center items-center w-full m-auto shadow-body">
+          <h2 className="text-2xl">Residents</h2>
           {location.residents.length === 0 ? (
             <span>
               <BsDashCircleFill />
               There are not residents in this location
             </span>
           ) : (
-            <div>
+            <div className="grid grid-cols-4 m-auto gap-10 mt-10 shadow-2xl p-10 rounded-md">
               {residents.map((resident: any) => (
-                <div key={resident.id}>
-                  <Image
-                    src={resident.image}
-                    alt={resident.name}
-                    width={300}
-                    height={300}
-                    priority
-                  />
-                  <div>
-                    <Link href={`/characters/${resident.id}`}>
-                      {resident.name}
-                    </Link>
+                <div key={resident.id} className="gap-10">
+                  <div className="flex w-10">
+                    <Image
+                      src={resident.image}
+                      alt={resident.name}
+                      width={300}
+                      height={300}
+                      priority
+                      className="flex rounded-full"
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="flex">
+                      <p>Name:</p>
+                      <Link
+                        href={`/characters/${resident.id}`}
+                        className="flex ml-3 text-primary"
+                      >
+                        {resident.name}
+                      </Link>
+                    </div>
                     <span>Status: {resident.status}</span>
                   </div>
                 </div>

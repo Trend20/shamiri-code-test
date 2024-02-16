@@ -18,6 +18,7 @@ const config: Config = {
       boxdark: "#24303F",
       "boxdark-2": "#1A222C",
       strokedark: "#2E3A47",
+      primary: "#0e85ed",
     },
     screens: {
       ...defaultTheme.screens,
