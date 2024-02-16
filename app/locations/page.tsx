@@ -1,19 +1,16 @@
-// "use client";
-import React, { useState } from "react";
-import { getAllLocations } from "../api/locations";
+"use client";
+
+import { useState, useEffect } from "react";
 import LocationCard from "@/components/LocationCard";
 import Pagination from "@/components/Pagination";
 import SearchBar from "@/components/SearchBar";
+import { getAllLocations } from "../api/locations";
+import { Location } from "@/types/location";
 
-const Locations = async ({
-  searchParams,
-}: {
-  searchParams?: {
-    page?: string;
-  };
-}) => {
-  const currentPage = searchParams?.page || "1";
-  const { info, results } = await getAllLocations(currentPage);
+const Locations = () => {
+  const [locations, setLocations] = useState<Location[]>([]);
+  const [currentPage, setCurrentPage] = useState<string>("1");
+  const [totalPages, setTotalPages] = useState(1);
 
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -21,7 +18,17 @@ const Locations = async ({
     setSearchQuery(event.target.value);
   };
 
-  const filteredLocations = results.filter((location: any) =>
+  useEffect(() => {
+    const fetchData = async () => {
+      const { info, results } = await getAllLocations(currentPage);
+      setLocations(results);
+      setTotalPages(info.pages);
+    };
+
+    fetchData();
+  }, [currentPage]);
+
+  const filteredLocations = locations.filter((location) =>
     location.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -34,7 +41,7 @@ const Locations = async ({
           <LocationCard key={location.id} location={location} />
         ))}
       </div>
-      <Pagination pages={info.pages} currentPage={Number(currentPage) - 1} />
+      <Pagination pages={totalPages} currentPage={Number(currentPage) - 1} />
     </main>
   );
 };
