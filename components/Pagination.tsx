@@ -2,7 +2,6 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import ReactPaginate from "react-paginate";
-import styles from "../styles/pagination.module.css";
 import { PageProps } from "@/types/page";
 
 export default function Pagination({ pages, currentPage }: PageProps) {
@@ -17,12 +16,17 @@ export default function Pagination({ pages, currentPage }: PageProps) {
   };
 
   return (
-    <div className={styles.container}>
+    <div className="flex justify-center w-full mt-10">
       <ReactPaginate
         pageCount={pages}
         forcePage={currentPage}
         onPageChange={handlePageChange}
-        className={styles["react-paginate"]}
+        className="flex list-none m-0 p-0 items-center"
+        pageClassName={"mx-2 cursor-pointer"}
+        activeClassName={"bg-blue-500 text-white"}
+        previousClassName={"mx-2 bg-gray-300 p-2 rounded cursor-pointer"}
+        nextClassName={"mx-2 bg-gray-300 p-2 rounded cursor-pointer"}
+        disabledClassName={"opacity-50 cursor-not-allowed"}
       />
     </div>
   );

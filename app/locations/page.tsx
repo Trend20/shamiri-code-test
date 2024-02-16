@@ -1,6 +1,7 @@
 import React from "react";
 import { getAllLocations } from "../api/locations";
 import LocationCard from "@/components/LocationCard";
+import Pagination from "@/components/Pagination";
 
 const Locations = async ({
   searchParams,
@@ -19,6 +20,7 @@ const Locations = async ({
           <LocationCard key={location.id} location={location} />
         ))}
       </div>
+      <Pagination pages={info.pages} currentPage={Number(currentPage) - 1} />
     </main>
   );
 };
