@@ -1,9 +1,14 @@
+import Image from "next/image";
+import Link from "next/link";
 import { getLocationById } from "@/app/api/locations";
 import React from "react";
+import { BsDashCircleFill } from "react-icons/bs";
+import { getCharactersFromUrls } from "@/app/api/characters";
 
 const Location = async ({ params }: { params: { id: string } }) => {
   const locationId = params.id;
   const location = await getLocationById(locationId);
+  const residents = await getCharactersFromUrls(location.residents);
   return (
     <main className="py-40">
       <div className="flex flex-col m-auto p-20 gap-20">
@@ -27,7 +32,35 @@ const Location = async ({ params }: { params: { id: string } }) => {
           </div>
         </div>
         <hr />
-        
+        <div>
+          <h2>Residents</h2>
+          {location.residents.length === 0 ? (
+            <span>
+              <BsDashCircleFill />
+              There are not residents in this location
+            </span>
+          ) : (
+            <div>
+              {residents.map((resident: any) => (
+                <div key={resident.id}>
+                  <Image
+                    src={resident.image}
+                    alt={resident.name}
+                    width={300}
+                    height={300}
+                    priority
+                  />
+                  <div>
+                    <Link href={`/characters/${resident.id}`}>
+                      {resident.name}
+                    </Link>
+                    <span>Status: {resident.status}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </main>
   );
