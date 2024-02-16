@@ -39,7 +39,7 @@ const Location = async ({ params }: { params: { id: string } }) => {
               <i className="mr-5">
                 <BsDashCircleFill size={30} />
               </i>
-              There are not residents in this location
+              There are no residents in this location
             </span>
           ) : (
             <div className="grid grid-cols-4 m-auto gap-10 mt-10 shadow-2xl p-10 rounded-md">
