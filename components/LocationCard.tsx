@@ -17,6 +17,12 @@ export default function LocationCard({ location }: { location: Location }) {
         <span className="font-bold text-2xl mr-5">Type:</span>
         <span>{location.type}</span>
       </div>
+      <Link
+        href={`/locations/${location.id}`}
+        className="flex text-lg mt-5 font-semibold bg-primary text-whiten w-36 p-3 rounded-md"
+      >
+        View Details
+      </Link>
     </div>
   );
 }

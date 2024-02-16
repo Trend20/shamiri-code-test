@@ -21,11 +21,15 @@ export default function Pagination({ pages, currentPage }: PageProps) {
         pageCount={pages}
         forcePage={currentPage}
         onPageChange={handlePageChange}
-        className="flex list-none m-0 p-0 items-center"
+        className="flex list-none m-0 p-0 items-center rounded-md bg-whiter"
         pageClassName={"mx-2 cursor-pointer"}
-        activeClassName={"bg-blue-500 text-white"}
-        previousClassName={"mx-2 bg-gray-300 p-2 rounded cursor-pointer"}
-        nextClassName={"mx-2 bg-gray-300 p-2 rounded cursor-pointer"}
+        activeClassName={
+          "bg-blue-500 text-white border border-primary p-3 h-10 w-10 flex items-center justify-center rounded-md"
+        }
+        previousClassName={
+          "mx-2 bg-primary text-whiter p-2 rounded cursor-pointer"
+        }
+        nextClassName={"mx-2 bg-primary text-whiter p-2 rounded cursor-pointer"}
         disabledClassName={"opacity-50 cursor-not-allowed"}
       />
     </div>
