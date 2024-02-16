@@ -6,10 +6,7 @@ export default function LocationCard({ location }: { location: Location }) {
     <div className="flex flex-col shadow-xl p-8 rounded-md w-full bg-slate-300">
       <div className="flex items-center">
         <h3 className="text-2xl font-bold mr-5">Name:</h3>
-        <Link
-          href={`/locations/${location.id}`}
-          className="flex text-sky-500 text-lg"
-        >
+        <Link href={`/locations/${location.id}`} className="flex text-lg">
           {location.name}
         </Link>
       </div>
