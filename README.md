@@ -37,9 +37,18 @@ The app integrates with the Rick & Morty API to fetch data regarding locations, 
 ## Technologies Used
 
 Programming Language: `NextJS`
+
 Data Persistence: `LocalStorage`
 
+## Getting Started
+
+To run the application locally, follow these steps:
+
 ```bash
+
+git clone git@github.com:Trend20/shamiri-code-test.git
+
+
 npm run dev
 # or
 yarn dev
