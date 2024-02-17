@@ -48,7 +48,6 @@ To run the application locally, follow these steps:
 
 git clone git@github.com:Trend20/shamiri-code-test.git
 
-
 npm run dev
 # or
 yarn dev

@@ -1,7 +1,7 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { getCharacterById } from "@/app/api/characters";
 import { FaGlobe } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaRegCalendarAlt } from "react-icons/fa";
@@ -10,12 +10,48 @@ import { GiPlantsAndAnimals } from "react-icons/gi";
 import { MdMonitorHeart } from "react-icons/md";
 import { PiGenderIntersexBold } from "react-icons/pi";
 import { PiTelevisionSimpleBold } from "react-icons/pi";
+import { getCharacterById } from "@/app/api/characters";
 import { getEpisodesFromUrls } from "@/app/api/episodes";
+import { ICharacter } from "@/types/character";
+import { Episode } from "@/types/episode";
+import NotesForm from "@/components/NotesForm";
 
-const Character = async ({ params }: { params: { id: string } }) => {
-  const characterId = params.id;
-  const character = await getCharacterById(characterId);
-  const episodes = await getEpisodesFromUrls(character.episode);
+const Character = ({ params }: { params: { id: string } }) => {
+  const [character, setCharacter] = useState<ICharacter>();
+  const [episodes, setEpisodes] = useState<Episode[]>([]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  useEffect(() => {
+    const fetchCharacterData = async () => {
+      const characterId = params.id;
+      const characterData = await getCharacterById(characterId);
+      setCharacter(characterData);
+    };
+
+    const fetchEpisodesData = async () => {
+      if (character && character.episode) {
+        const episodesData = await getEpisodesFromUrls(character.episode);
+        setEpisodes(episodesData);
+      }
+    };
+
+    fetchCharacterData();
+    fetchEpisodesData();
+  }, [character, params.id]);
+
+  if (!character) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <main className="w-full min-h-screen px-20 py-10">
       <div className="flex flex-col">
@@ -95,6 +131,15 @@ const Character = async ({ params }: { params: { id: string } }) => {
                 <span className="ml-3">
                   {new Date(character.created).toLocaleString()}
                 </span>
+              </div>
+              <div className="flex mt-8 w-40">
+                <button
+                  onClick={openModal}
+                  className="flex w-full bg-primary text-whiten font-semibold p-4 rounded-md justify-center items-center"
+                >
+                  Add Notes
+                </button>
+                <NotesForm isOpen={isModalOpen} onClose={closeModal} />
               </div>
             </div>
           </div>
