@@ -36,9 +36,20 @@ The app integrates with the Rick & Morty API to fetch data regarding locations, 
 
 ## Technologies Used
 
-Programming Language: `NextJS`
+Programming Language: `NextJS and Typescript`
 
 Data Persistence: `LocalStorage`
+
+Styling: `TailwindCSS` : It is very simple and increases the development speed because you don't have to work on a separate file for styles.
+
+## Choice of Database
+
+I chose LocalStorage because it stores data on the client side hence I don't have to make a request to the DB to get the information.
+Localstorage will also isolate this data hence a security measure for our application.
+
+## Choice of API Endpoint
+
+I chose REST API over GraphQL due to it's simplicity and it's caching mechanism. GraphQL is revolutionary and flexible but a bit complex when working with different sources of data. I am also more familiar with REST than GraphQL.
 
 ## Getting Started
 
