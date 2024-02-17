@@ -30,6 +30,15 @@ Tapping on a resident will navigate to a screen displaying detailed information 
 
 Allow users to add and save notes about characters, providing a means to recall important information.
 
+## API Integration
+
+The app integrates with the Rick & Morty API to fetch data regarding locations, residents, and episodes. It utilizes appropriate API endpoints and handles responses effectively to populate the application with relevant information.
+
+## Technologies Used
+
+Programming Language: `NextJS`
+Data Persistence: `LocalStorage`
+
 ```bash
 npm run dev
 # or
