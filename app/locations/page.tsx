@@ -41,9 +41,7 @@ const Locations = () => {
           <LocationCard key={location.id} location={location} />
         ))}
       </div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Pagination pages={totalPages} currentPage={Number(currentPage) - 1} />
-      </Suspense>
+      <Pagination pages={totalPages} currentPage={Number(currentPage) - 1} />
     </main>
   );
 };

@@ -2,6 +2,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import ReactPaginate from "react-paginate";
 import { PageProps } from "@/types/page";
+import { Suspense } from "react";
 
 export default function Pagination({ pages, currentPage }: PageProps) {
   const { replace } = useRouter();
@@ -15,6 +16,7 @@ export default function Pagination({ pages, currentPage }: PageProps) {
   };
 
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <div className="flex justify-center w-full mt-10">
       <ReactPaginate
         pageCount={pages}
@@ -32,5 +34,6 @@ export default function Pagination({ pages, currentPage }: PageProps) {
         disabledClassName={"opacity-50 cursor-not-allowed"}
       />
     </div>
+    </Suspense>
   );
 }
