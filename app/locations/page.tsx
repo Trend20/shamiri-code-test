@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import LocationCard from "@/components/LocationCard";
 import Pagination from "@/components/Pagination";
 import SearchBar from "@/components/SearchBar";
@@ -41,7 +41,9 @@ const Locations = () => {
           <LocationCard key={location.id} location={location} />
         ))}
       </div>
-      <Pagination pages={totalPages} currentPage={Number(currentPage) - 1} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Pagination pages={totalPages} currentPage={Number(currentPage) - 1} />
+      </Suspense>
     </main>
   );
 };
